@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weds.api.mapper.WtPublicMapper">
+    <resultMap id="BaseResultMap" type="com.weds.api.entity.WtPublicEntity">
+        <id column="xh" jdbcType="INTEGER" property="xh"/>
+        <result column="lx" jdbcType="INTEGER" property="lx"/>
+        <result column="is_all" jdbcType="INTEGER" property="isAll"/>
+        <result column="log_type" jdbcType="INTEGER" property="logType"/>
+        <result column="user_serial" jdbcType="BIGINT" property="userSerial"/>
+        <result column="dev_serial" jdbcType="CHAR" property="devSerial"/>
+        <result column="card_serial" jdbcType="BIGINT" property="cardSerial"/>
+        <result column="new_number" jdbcType="BIGINT" property="newNumber"/>
+        <result column="old_number" jdbcType="BIGINT" property="oldNumber"/>
+        <result column="log_sj" jdbcType="TIMESTAMP" property="logSj"/>
+        <result column="log_ip" jdbcType="VARCHAR" property="logIp"/>
+        <result column="gly_no" jdbcType="NVARCHAR" property="glyNo"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        xh, lx, is_all, log_type, user_serial, dev_serial, card_serial, new_number, old_number,
+            log_sj, log_ip, gly_no
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from wt_public
+        where xh = #{xh,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from wt_public
+        where xh = #{xh,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.weds.api.entity.WtPublicEntity">
+        <selectKey keyProperty="xh" order="AFTER" resultType="java.lang.Integer">
+            SELECT SCOPE_IDENTITY()
+        </selectKey>
+        insert into wt_public (lx, is_all, log_type,
+        user_serial, dev_serial, card_serial,
+        new_number, old_number, log_sj,
+        log_ip, gly_no)
+        values (#{lx,jdbcType=INTEGER}, #{isAll,jdbcType=INTEGER}, #{logType,jdbcType=INTEGER},
+        #{userSerial,jdbcType=BIGINT}, #{devSerial,jdbcType=CHAR}, #{cardSerial,jdbcType=BIGINT},
+        #{newNumber,jdbcType=BIGINT}, #{oldNumber,jdbcType=BIGINT}, #{logSj,jdbcType=TIMESTAMP},
+        #{logIp,jdbcType=VARCHAR}, #{glyNo,jdbcType=NVARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.weds.api.entity.WtPublicEntity">
+        <selectKey keyProperty="xh" order="AFTER" resultType="java.lang.Integer">
+            SELECT SCOPE_IDENTITY()
+        </selectKey>
+        insert into wt_public
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="lx != null">
+                lx,
+            </if>
+            <if test="isAll != null">
+                is_all,
+            </if>
+            <if test="logType != null">
+                log_type,
+            </if>
+            <if test="userSerial != null">
+                user_serial,
+            </if>
+            <if test="devSerial != null">
+                dev_serial,
+            </if>
+            <if test="cardSerial != null">
+                card_serial,
+            </if>
+            <if test="newNumber != null">
+                new_number,
+            </if>
+            <if test="oldNumber != null">
+                old_number,
+            </if>
+            <if test="logSj != null">
+                log_sj,
+            </if>
+            <if test="logIp != null">
+                log_ip,
+            </if>
+            <if test="glyNo != null">
+                gly_no,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="lx != null">
+                #{lx,jdbcType=INTEGER},
+            </if>
+            <if test="isAll != null">
+                #{isAll,jdbcType=INTEGER},
+            </if>
+            <if test="logType != null">
+                #{logType,jdbcType=INTEGER},
+            </if>
+            <if test="userSerial != null">
+                #{userSerial,jdbcType=BIGINT},
+            </if>
+            <if test="devSerial != null">
+                #{devSerial,jdbcType=CHAR},
+            </if>
+            <if test="cardSerial != null">
+                #{cardSerial,jdbcType=BIGINT},
+            </if>
+            <if test="newNumber != null">
+                #{newNumber,jdbcType=BIGINT},
+            </if>
+            <if test="oldNumber != null">
+                #{oldNumber,jdbcType=BIGINT},
+            </if>
+            <if test="logSj != null">
+                #{logSj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="logIp != null">
+                #{logIp,jdbcType=VARCHAR},
+            </if>
+            <if test="glyNo != null">
+                #{glyNo,jdbcType=NVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.weds.api.entity.WtPublicEntity">
+        update wt_public
+        <set>
+            <if test="lx != null">
+                lx = #{lx,jdbcType=INTEGER},
+            </if>
+            <if test="isAll != null">
+                is_all = #{isAll,jdbcType=INTEGER},
+            </if>
+            <if test="logType != null">
+                log_type = #{logType,jdbcType=INTEGER},
+            </if>
+            <if test="userSerial != null">
+                user_serial = #{userSerial,jdbcType=BIGINT},
+            </if>
+            <if test="devSerial != null">
+                dev_serial = #{devSerial,jdbcType=CHAR},
+            </if>
+            <if test="cardSerial != null">
+                card_serial = #{cardSerial,jdbcType=BIGINT},
+            </if>
+            <if test="newNumber != null">
+                new_number = #{newNumber,jdbcType=BIGINT},
+            </if>
+            <if test="oldNumber != null">
+                old_number = #{oldNumber,jdbcType=BIGINT},
+            </if>
+            <if test="logSj != null">
+                log_sj = #{logSj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="logIp != null">
+                log_ip = #{logIp,jdbcType=VARCHAR},
+            </if>
+            <if test="glyNo != null">
+                gly_no = #{glyNo,jdbcType=NVARCHAR},
+            </if>
+        </set>
+        where xh = #{xh,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.weds.api.entity.WtPublicEntity">
+        update wt_public
+        set lx          = #{lx,jdbcType=INTEGER},
+            is_all      = #{isAll,jdbcType=INTEGER},
+            log_type    = #{logType,jdbcType=INTEGER},
+            user_serial = #{userSerial,jdbcType=BIGINT},
+            dev_serial  = #{devSerial,jdbcType=CHAR},
+            card_serial = #{cardSerial,jdbcType=BIGINT},
+            new_number  = #{newNumber,jdbcType=BIGINT},
+            old_number  = #{oldNumber,jdbcType=BIGINT},
+            log_sj      = #{logSj,jdbcType=TIMESTAMP},
+            log_ip      = #{logIp,jdbcType=VARCHAR},
+            gly_no      = #{glyNo,jdbcType=NVARCHAR}
+        where xh = #{xh,jdbcType=INTEGER}
+    </update>
+</mapper>

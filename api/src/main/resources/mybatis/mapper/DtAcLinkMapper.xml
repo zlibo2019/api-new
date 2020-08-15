@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weds.api.mapper.DtAcLinkMapper">
+  <resultMap id="BaseResultMap" type="com.weds.api.entity.DtAcLinkEntity">
+    <id column="user_serial" jdbcType="BIGINT" property="userSerial" />
+    <result column="xh" jdbcType="INTEGER" property="xh" />
+    <result column="card_serial" jdbcType="VARCHAR" property="cardSerial" />
+    <result column="card_order" jdbcType="INTEGER" property="cardOrder" />
+    <result column="ac_money" jdbcType="DECIMAL" property="acMoney" />
+    <result column="ac_addm" jdbcType="DECIMAL" property="acAddm" />
+    <result column="ac_addo" jdbcType="DECIMAL" property="acAddo" />
+    <result column="ac_subm" jdbcType="DECIMAL" property="acSubm" />
+    <result column="ac_subo" jdbcType="DECIMAL" property="acSubo" />
+    <result column="ac_regm" jdbcType="DECIMAL" property="acRegm" />
+    <result column="ac_make" jdbcType="DECIMAL" property="acMake" />
+    <result column="ac_eachm" jdbcType="INTEGER" property="acEachm" />
+    <result column="ac_eacho" jdbcType="INTEGER" property="acEacho" />
+    <result column="ac_blockm" jdbcType="DECIMAL" property="acBlockm" />
+    <result column="ac_blocks" jdbcType="DECIMAL" property="acBlocks" />
+    <result column="ac_blocke" jdbcType="INTEGER" property="acBlocke" />
+    <result column="sub_kssj" jdbcType="TIMESTAMP" property="subKssj" />
+    <result column="sub_jssj" jdbcType="TIMESTAMP" property="subJssj" />
+    <result column="sub_order" jdbcType="INTEGER" property="subOrder" />
+    <result column="jl_count" jdbcType="INTEGER" property="jlCount" />
+    <result column="ac_state" jdbcType="INTEGER" property="acState" />
+    <result column="sj" jdbcType="TIMESTAMP" property="sj" />
+    <result column="gly_no" jdbcType="NVARCHAR" property="glyNo" />
+    <result column="each_jssj" jdbcType="TIMESTAMP" property="eachJssj" />
+    <result column="each_kssj" jdbcType="TIMESTAMP" property="eachKssj" />
+    <result column="each_order" jdbcType="INTEGER" property="eachOrder" />
+    <result column="card_hao" jdbcType="VARCHAR" property="cardHao" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_serial, xh, card_serial, card_order, ac_money, ac_addm, ac_addo, ac_subm, ac_subo, 
+    ac_regm, ac_make, ac_eachm, ac_eacho, ac_blockm, ac_blocks, ac_blocke, sub_kssj, 
+    sub_jssj, sub_order, jl_count, ac_state, sj, gly_no, each_jssj, each_kssj, each_order, 
+    card_hao
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dt_ac_link
+    where user_serial = #{userSerial,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from dt_ac_link
+    where user_serial = #{userSerial,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.weds.api.entity.DtAcLinkEntity">
+    insert into dt_ac_link (user_serial, xh, card_serial, 
+      card_order, ac_money, ac_addm, 
+      ac_addo, ac_subm, ac_subo, 
+      ac_regm, ac_make, ac_eachm, 
+      ac_eacho, ac_blockm, ac_blocks, 
+      ac_blocke, sub_kssj, sub_jssj, 
+      sub_order, jl_count, ac_state, 
+      sj, gly_no, each_jssj, 
+      each_kssj, each_order, card_hao
+      )
+    values (#{userSerial,jdbcType=BIGINT}, #{xh,jdbcType=INTEGER}, #{cardSerial,jdbcType=VARCHAR}, 
+      #{cardOrder,jdbcType=INTEGER}, #{acMoney,jdbcType=DECIMAL}, #{acAddm,jdbcType=DECIMAL}, 
+      #{acAddo,jdbcType=DECIMAL}, #{acSubm,jdbcType=DECIMAL}, #{acSubo,jdbcType=DECIMAL}, 
+      #{acRegm,jdbcType=DECIMAL}, #{acMake,jdbcType=DECIMAL}, #{acEachm,jdbcType=INTEGER}, 
+      #{acEacho,jdbcType=INTEGER}, #{acBlockm,jdbcType=DECIMAL}, #{acBlocks,jdbcType=DECIMAL}, 
+      #{acBlocke,jdbcType=INTEGER}, #{subKssj,jdbcType=TIMESTAMP}, #{subJssj,jdbcType=TIMESTAMP}, 
+      #{subOrder,jdbcType=INTEGER}, #{jlCount,jdbcType=INTEGER}, #{acState,jdbcType=INTEGER}, 
+      #{sj,jdbcType=TIMESTAMP}, #{glyNo,jdbcType=NVARCHAR}, #{eachJssj,jdbcType=TIMESTAMP}, 
+      #{eachKssj,jdbcType=TIMESTAMP}, #{eachOrder,jdbcType=INTEGER}, #{cardHao,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.weds.api.entity.DtAcLinkEntity">
+    insert into dt_ac_link
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userSerial != null">
+        user_serial,
+      </if>
+      <if test="xh != null">
+        xh,
+      </if>
+      <if test="cardSerial != null">
+        card_serial,
+      </if>
+      <if test="cardOrder != null">
+        card_order,
+      </if>
+      <if test="acMoney != null">
+        ac_money,
+      </if>
+      <if test="acAddm != null">
+        ac_addm,
+      </if>
+      <if test="acAddo != null">
+        ac_addo,
+      </if>
+      <if test="acSubm != null">
+        ac_subm,
+      </if>
+      <if test="acSubo != null">
+        ac_subo,
+      </if>
+      <if test="acRegm != null">
+        ac_regm,
+      </if>
+      <if test="acMake != null">
+        ac_make,
+      </if>
+      <if test="acEachm != null">
+        ac_eachm,
+      </if>
+      <if test="acEacho != null">
+        ac_eacho,
+      </if>
+      <if test="acBlockm != null">
+        ac_blockm,
+      </if>
+      <if test="acBlocks != null">
+        ac_blocks,
+      </if>
+      <if test="acBlocke != null">
+        ac_blocke,
+      </if>
+      <if test="subKssj != null">
+        sub_kssj,
+      </if>
+      <if test="subJssj != null">
+        sub_jssj,
+      </if>
+      <if test="subOrder != null">
+        sub_order,
+      </if>
+      <if test="jlCount != null">
+        jl_count,
+      </if>
+      <if test="acState != null">
+        ac_state,
+      </if>
+      <if test="sj != null">
+        sj,
+      </if>
+      <if test="glyNo != null">
+        gly_no,
+      </if>
+      <if test="eachJssj != null">
+        each_jssj,
+      </if>
+      <if test="eachKssj != null">
+        each_kssj,
+      </if>
+      <if test="eachOrder != null">
+        each_order,
+      </if>
+      <if test="cardHao != null">
+        card_hao,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userSerial != null">
+        #{userSerial,jdbcType=BIGINT},
+      </if>
+      <if test="xh != null">
+        #{xh,jdbcType=INTEGER},
+      </if>
+      <if test="cardSerial != null">
+        #{cardSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="cardOrder != null">
+        #{cardOrder,jdbcType=INTEGER},
+      </if>
+      <if test="acMoney != null">
+        #{acMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="acAddm != null">
+        #{acAddm,jdbcType=DECIMAL},
+      </if>
+      <if test="acAddo != null">
+        #{acAddo,jdbcType=DECIMAL},
+      </if>
+      <if test="acSubm != null">
+        #{acSubm,jdbcType=DECIMAL},
+      </if>
+      <if test="acSubo != null">
+        #{acSubo,jdbcType=DECIMAL},
+      </if>
+      <if test="acRegm != null">
+        #{acRegm,jdbcType=DECIMAL},
+      </if>
+      <if test="acMake != null">
+        #{acMake,jdbcType=DECIMAL},
+      </if>
+      <if test="acEachm != null">
+        #{acEachm,jdbcType=INTEGER},
+      </if>
+      <if test="acEacho != null">
+        #{acEacho,jdbcType=INTEGER},
+      </if>
+      <if test="acBlockm != null">
+        #{acBlockm,jdbcType=DECIMAL},
+      </if>
+      <if test="acBlocks != null">
+        #{acBlocks,jdbcType=DECIMAL},
+      </if>
+      <if test="acBlocke != null">
+        #{acBlocke,jdbcType=INTEGER},
+      </if>
+      <if test="subKssj != null">
+        #{subKssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subJssj != null">
+        #{subJssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subOrder != null">
+        #{subOrder,jdbcType=INTEGER},
+      </if>
+      <if test="jlCount != null">
+        #{jlCount,jdbcType=INTEGER},
+      </if>
+      <if test="acState != null">
+        #{acState,jdbcType=INTEGER},
+      </if>
+      <if test="sj != null">
+        #{sj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="glyNo != null">
+        #{glyNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="eachJssj != null">
+        #{eachJssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eachKssj != null">
+        #{eachKssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eachOrder != null">
+        #{eachOrder,jdbcType=INTEGER},
+      </if>
+      <if test="cardHao != null">
+        #{cardHao,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.weds.api.entity.DtAcLinkEntity">
+    update dt_ac_link
+    <set>
+      <if test="xh != null">
+        xh = #{xh,jdbcType=INTEGER},
+      </if>
+      <if test="cardSerial != null">
+        card_serial = #{cardSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="cardOrder != null">
+        card_order = #{cardOrder,jdbcType=INTEGER},
+      </if>
+      <if test="acMoney != null">
+        ac_money = #{acMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="acAddm != null">
+        ac_addm = #{acAddm,jdbcType=DECIMAL},
+      </if>
+      <if test="acAddo != null">
+        ac_addo = #{acAddo,jdbcType=DECIMAL},
+      </if>
+      <if test="acSubm != null">
+        ac_subm = #{acSubm,jdbcType=DECIMAL},
+      </if>
+      <if test="acSubo != null">
+        ac_subo = #{acSubo,jdbcType=DECIMAL},
+      </if>
+      <if test="acRegm != null">
+        ac_regm = #{acRegm,jdbcType=DECIMAL},
+      </if>
+      <if test="acMake != null">
+        ac_make = #{acMake,jdbcType=DECIMAL},
+      </if>
+      <if test="acEachm != null">
+        ac_eachm = #{acEachm,jdbcType=INTEGER},
+      </if>
+      <if test="acEacho != null">
+        ac_eacho = #{acEacho,jdbcType=INTEGER},
+      </if>
+      <if test="acBlockm != null">
+        ac_blockm = #{acBlockm,jdbcType=DECIMAL},
+      </if>
+      <if test="acBlocks != null">
+        ac_blocks = #{acBlocks,jdbcType=DECIMAL},
+      </if>
+      <if test="acBlocke != null">
+        ac_blocke = #{acBlocke,jdbcType=INTEGER},
+      </if>
+      <if test="subKssj != null">
+        sub_kssj = #{subKssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subJssj != null">
+        sub_jssj = #{subJssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subOrder != null">
+        sub_order = #{subOrder,jdbcType=INTEGER},
+      </if>
+      <if test="jlCount != null">
+        jl_count = #{jlCount,jdbcType=INTEGER},
+      </if>
+      <if test="acState != null">
+        ac_state = #{acState,jdbcType=INTEGER},
+      </if>
+      <if test="sj != null">
+        sj = #{sj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="glyNo != null">
+        gly_no = #{glyNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="eachJssj != null">
+        each_jssj = #{eachJssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eachKssj != null">
+        each_kssj = #{eachKssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eachOrder != null">
+        each_order = #{eachOrder,jdbcType=INTEGER},
+      </if>
+      <if test="cardHao != null">
+        card_hao = #{cardHao,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_serial = #{userSerial,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.weds.api.entity.DtAcLinkEntity">
+    update dt_ac_link
+    set xh = #{xh,jdbcType=INTEGER},
+      card_serial = #{cardSerial,jdbcType=VARCHAR},
+      card_order = #{cardOrder,jdbcType=INTEGER},
+      ac_money = #{acMoney,jdbcType=DECIMAL},
+      ac_addm = #{acAddm,jdbcType=DECIMAL},
+      ac_addo = #{acAddo,jdbcType=DECIMAL},
+      ac_subm = #{acSubm,jdbcType=DECIMAL},
+      ac_subo = #{acSubo,jdbcType=DECIMAL},
+      ac_regm = #{acRegm,jdbcType=DECIMAL},
+      ac_make = #{acMake,jdbcType=DECIMAL},
+      ac_eachm = #{acEachm,jdbcType=INTEGER},
+      ac_eacho = #{acEacho,jdbcType=INTEGER},
+      ac_blockm = #{acBlockm,jdbcType=DECIMAL},
+      ac_blocks = #{acBlocks,jdbcType=DECIMAL},
+      ac_blocke = #{acBlocke,jdbcType=INTEGER},
+      sub_kssj = #{subKssj,jdbcType=TIMESTAMP},
+      sub_jssj = #{subJssj,jdbcType=TIMESTAMP},
+      sub_order = #{subOrder,jdbcType=INTEGER},
+      jl_count = #{jlCount,jdbcType=INTEGER},
+      ac_state = #{acState,jdbcType=INTEGER},
+      sj = #{sj,jdbcType=TIMESTAMP},
+      gly_no = #{glyNo,jdbcType=NVARCHAR},
+      each_jssj = #{eachJssj,jdbcType=TIMESTAMP},
+      each_kssj = #{eachKssj,jdbcType=TIMESTAMP},
+      each_order = #{eachOrder,jdbcType=INTEGER},
+      card_hao = #{cardHao,jdbcType=VARCHAR}
+    where user_serial = #{userSerial,jdbcType=BIGINT}
+  </update>
+  <select id="selectListByEntity" parameterType="com.weds.api.entity.DtAcLinkEntity" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dt_ac_link
+    <where>
+      <if test="userSerial != null">
+        and user_serial = #{userSerial,jdbcType=BIGINT}
+      </if>
+      <if test="xh != null">
+        and xh = #{xh,jdbcType=INTEGER}
+      </if>
+      <if test="cardSerial != null">
+        <bind name="cardSerialLike" value="'%'+cardSerial+'%'" />
+        and card_serial like #{cardSerialLike}
+        <!--and card_serial = #{cardSerial,jdbcType=VARCHAR}-->
+      </if>
+      <if test="cardOrder != null">
+        and card_order = #{cardOrder,jdbcType=INTEGER}
+      </if>
+      <if test="acMoney != null">
+        and ac_money = #{acMoney,jdbcType=DECIMAL}
+      </if>
+      <if test="acAddm != null">
+        and ac_addm = #{acAddm,jdbcType=DECIMAL}
+      </if>
+      <if test="acAddo != null">
+        and ac_addo = #{acAddo,jdbcType=DECIMAL}
+      </if>
+      <if test="acSubm != null">
+        and ac_subm = #{acSubm,jdbcType=DECIMAL}
+      </if>
+      <if test="acSubo != null">
+        and ac_subo = #{acSubo,jdbcType=DECIMAL}
+      </if>
+      <if test="acRegm != null">
+        and ac_regm = #{acRegm,jdbcType=DECIMAL}
+      </if>
+      <if test="acMake != null">
+        and ac_make = #{acMake,jdbcType=DECIMAL}
+      </if>
+      <if test="acEachm != null">
+        and ac_eachm = #{acEachm,jdbcType=INTEGER}
+      </if>
+      <if test="acEacho != null">
+        and ac_eacho = #{acEacho,jdbcType=INTEGER}
+      </if>
+      <if test="acBlockm != null">
+        and ac_blockm = #{acBlockm,jdbcType=DECIMAL}
+      </if>
+      <if test="acBlocks != null">
+        and ac_blocks = #{acBlocks,jdbcType=DECIMAL}
+      </if>
+      <if test="acBlocke != null">
+        and ac_blocke = #{acBlocke,jdbcType=INTEGER}
+      </if>
+      <if test="subKssj != null">
+        and sub_kssj = #{subKssj,jdbcType=TIMESTAMP}
+      </if>
+      <if test="subJssj != null">
+        and sub_jssj = #{subJssj,jdbcType=TIMESTAMP}
+      </if>
+      <if test="subOrder != null">
+        and sub_order = #{subOrder,jdbcType=INTEGER}
+      </if>
+      <if test="jlCount != null">
+        and jl_count = #{jlCount,jdbcType=INTEGER}
+      </if>
+      <if test="acState != null">
+        and ac_state = #{acState,jdbcType=INTEGER}
+      </if>
+      <if test="sj != null">
+        and sj = #{sj,jdbcType=TIMESTAMP}
+      </if>
+      <if test="glyNo != null">
+        <bind name="glyNoLike" value="'%'+glyNo+'%'" />
+        and gly_no like #{glyNoLike}
+        <!--and gly_no = #{glyNo,jdbcType=NVARCHAR}-->
+      </if>
+      <if test="eachJssj != null">
+        and each_jssj = #{eachJssj,jdbcType=TIMESTAMP}
+      </if>
+      <if test="eachKssj != null">
+        and each_kssj = #{eachKssj,jdbcType=TIMESTAMP}
+      </if>
+      <if test="eachOrder != null">
+        and each_order = #{eachOrder,jdbcType=INTEGER}
+      </if>
+      <if test="cardHao != null">
+        <bind name="cardHaoLike" value="'%'+cardHao+'%'" />
+        and card_hao like #{cardHaoLike}
+        <!--and card_hao = #{cardHao,jdbcType=VARCHAR}-->
+      </if>
+      <if test="keys != null">
+        <bind name="keysLike" value="'%'+keys+'%'" />
+        and (user_serial = #{keys} or
+        xh = #{keys} or
+        card_serial like #{keysLike} or
+        card_order = #{keys} or
+        ac_money = #{keys} or
+        ac_addm = #{keys} or
+        ac_addo = #{keys} or
+        ac_subm = #{keys} or
+        ac_subo = #{keys} or
+        ac_regm = #{keys} or
+        ac_make = #{keys} or
+        ac_eachm = #{keys} or
+        ac_eacho = #{keys} or
+        ac_blockm = #{keys} or
+        ac_blocks = #{keys} or
+        ac_blocke = #{keys} or
+        sub_kssj = #{keys} or
+        sub_jssj = #{keys} or
+        sub_order = #{keys} or
+        jl_count = #{keys} or
+        ac_state = #{keys} or
+        sj = #{keys} or
+        gly_no like #{keysLike} or
+        each_jssj = #{keys} or
+        each_kssj = #{keys} or
+        each_order = #{keys} or
+        card_hao like #{keysLike})
+      </if>
+    </where>
+  </select>
+</mapper>

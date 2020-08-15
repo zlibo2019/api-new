@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weds.api.mapper.DtUserMapper">
+  <resultMap id="BaseResultMap" type="com.weds.api.entity.DtUserEntity">
+    <id column="user_serial" jdbcType="BIGINT" property="userSerial" />
+    <result column="user_no" jdbcType="NVARCHAR" property="userNo" />
+    <result column="user_lname" jdbcType="NVARCHAR" property="userLname" />
+    <result column="user_fname" jdbcType="NVARCHAR" property="userFname" />
+    <result column="user_dep" jdbcType="INTEGER" property="userDep" />
+    <result column="user_workday" jdbcType="TIMESTAMP" property="userWorkday" />
+    <result column="user_duty" jdbcType="NVARCHAR" property="userDuty" />
+    <result column="user_card" jdbcType="NVARCHAR" property="userCard" />
+    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
+    <result column="user_type" jdbcType="SMALLINT" property="userType" />
+    <result column="user_sex" jdbcType="NVARCHAR" property="userSex" />
+    <result column="user_nation" jdbcType="NVARCHAR" property="userNation" />
+    <result column="user_birthday" jdbcType="TIMESTAMP" property="userBirthday" />
+    <result column="user_id" jdbcType="NVARCHAR" property="userId" />
+    <result column="user_telephone" jdbcType="NVARCHAR" property="userTelephone" />
+    <result column="user_address" jdbcType="NVARCHAR" property="userAddress" />
+    <result column="user_email" jdbcType="NVARCHAR" property="userEmail" />
+    <result column="user_face" jdbcType="INTEGER" property="userFace"/>
+    <result column="user_photo" jdbcType="INTEGER" property="userPhoto"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_serial, user_no, user_lname, user_fname, user_dep, user_workday, user_duty, 
+    user_card, user_password, user_type, user_sex, user_nation, user_birthday, user_id, 
+    user_telephone, user_address, user_email,user_face,user_photo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dt_user
+    where user_serial = #{userSerial,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    update dt_user set user_type = 51
+    where user_serial = #{userSerial,jdbcType=BIGINT}
+  </delete>
+  <insert id="insertSelective" parameterType="com.weds.api.entity.DtUserEntity" statementType="CALLABLE">
+        {call insert_user(
+        #{userSerial,mode=IN,jdbcType=INTEGER},
+        #{userNo,mode=IN,jdbcType=NVARCHAR},
+        #{userLname,mode=IN,jdbcType=NVARCHAR},
+        #{userDep,mode=IN,jdbcType=INTEGER},
+        #{userId,mode=IN,jdbcType=NVARCHAR},
+        #{userTelephone,mode=IN,jdbcType=NVARCHAR},
+        #{userEmail,mode=IN,jdbcType=NVARCHAR},
+        #{userSex,mode=IN,jdbcType=NVARCHAR},
+        #{userCard,mode=IN,jdbcType=NVARCHAR},
+        #{userType,mode=IN,jdbcType=INTEGER}
+        )}
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.weds.api.entity.DtUserEntity">
+    update dt_user
+    <set>
+      <if test="userNo != null">
+        user_no = #{userNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userLname != null">
+        user_lname = #{userLname,jdbcType=VARCHAR},
+      </if>
+      <if test="userFname != null">
+        user_fname = #{userFname,jdbcType=VARCHAR},
+      </if>
+      <if test="depNo != null">
+        dep_no = #{depNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userDep != null">
+        user_dep = #{userDep,jdbcType=INTEGER},
+      </if>
+      <if test="userDepname != null">
+        user_depname = #{userDepname,jdbcType=VARCHAR},
+      </if>
+      <if test="userWorkday != null">
+        user_workday = #{userWorkday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userDuty != null">
+        user_duty = #{userDuty,jdbcType=VARCHAR},
+      </if>
+      <if test="userCard != null">
+        user_card = #{userCard,jdbcType=VARCHAR},
+      </if>
+      <if test="userFinger != null">
+        user_finger = #{userFinger,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        user_password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="pwdBegin != null">
+        pwd_begin = #{pwdBegin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pwdEnd != null">
+        pwd_end = #{pwdEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userType != null">
+        user_type = #{userType,jdbcType=SMALLINT},
+      </if>
+      <if test="pactBegin != null">
+        pact_begin = #{pactBegin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pactEnd != null">
+        pact_end = #{pactEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userLevel != null">
+        user_level = #{userLevel,jdbcType=INTEGER},
+      </if>
+      <if test="userPhoto != null">
+        user_photo = #{userPhoto,jdbcType=INTEGER},
+      </if>
+      <if test="userSex != null">
+        user_sex = #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="userNation != null">
+        user_nation = #{userNation,jdbcType=VARCHAR},
+      </if>
+      <if test="userXueli != null">
+        user_xueli = #{userXueli,jdbcType=VARCHAR},
+      </if>
+      <if test="userNative != null">
+        user_native = #{userNative,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirthday != null">
+        user_birthday = #{userBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="credNo != null">
+        user_id = #{credNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userPost != null">
+        user_post = #{userPost,jdbcType=VARCHAR},
+      </if>
+      <if test="userLinkman != null">
+        user_linkman = #{userLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="userTelephone != null">
+        user_telephone = #{userTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddress != null">
+        user_address = #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null">
+        user_email = #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="user1 != null">
+        user_1 = #{user1,jdbcType=VARCHAR},
+      </if>
+      <if test="user2 != null">
+        user_2 = #{user2,jdbcType=VARCHAR},
+      </if>
+      <if test="userBz != null">
+        user_bz = #{userBz,jdbcType=VARCHAR},
+      </if>
+      <if test="kqRule != null">
+        kq_rule = #{kqRule,jdbcType=VARCHAR},
+      </if>
+      <if test="kqTaoban != null">
+        kq_taoban = #{kqTaoban,jdbcType=VARCHAR},
+      </if>
+      <if test="kqTiaoxiu != null">
+        kq_tiaoxiu = #{kqTiaoxiu,jdbcType=INTEGER},
+      </if>
+      <if test="xfTime != null">
+        xf_time = #{xfTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xfJiange != null">
+        xf_jiange = #{xfJiange,jdbcType=INTEGER},
+      </if>
+      <if test="xfJe != null">
+        xf_je = #{xfJe,jdbcType=INTEGER},
+      </if>
+      <if test="userSj != null">
+        user_sj = #{userSj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userRank != null">
+        user_rank = #{userRank,jdbcType=VARCHAR},
+      </if>
+      <if test="glyImg != null">
+        gly_img = #{glyImg,jdbcType=INTEGER},
+      </if>
+      <if test="userAc != null">
+        user_ac = #{userAc,jdbcType=INTEGER},
+      </if>
+      <if test="userGsbh != null">
+        user_gsbh = #{userGsbh,jdbcType=VARCHAR},
+      </if>
+      <if test="userYglx != null">
+        user_yglx = #{userYglx,jdbcType=VARCHAR},
+      </if>
+      <if test="userZhbh != null">
+        user_zhbh = #{userZhbh,jdbcType=VARCHAR},
+      </if>
+      <if test="userZhlx != null">
+        user_zhlx = #{userZhlx,jdbcType=VARCHAR},
+      </if>
+      <if test="userTxm != null">
+        user_txm = #{userTxm,jdbcType=VARCHAR},
+      </if>
+      <if test="userLx != null">
+        user_lx = #{userLx,jdbcType=INTEGER},
+      </if>
+      <if test="userMj != null">
+        user_mj = #{userMj,jdbcType=INTEGER},
+      </if>
+      <if test="depNoAdd != null">
+        dep_no_add = #{depNoAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="zh != null">
+        zh = #{zh,jdbcType=VARCHAR},
+      </if>
+      <if test="khsj != null">
+        khsj = #{khsj,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdentity != null">
+        user_identity = #{userIdentity,jdbcType=INTEGER},
+      </if>
+      <if test="carno != null">
+        carno = #{carno,jdbcType=VARCHAR},
+      </if>
+      <if test="userFace != null">
+        user_face = #{userFace,jdbcType=INTEGER},
+      </if>
+      <if test="lx != null">
+        lx = #{lx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_serial = #{userSerial,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.weds.api.entity.DtUserEntity">
+    update dt_user
+    set user_no = #{userNo,jdbcType=NVARCHAR},
+      user_lname = #{userLname,jdbcType=NVARCHAR},
+      user_fname = #{userFname,jdbcType=NVARCHAR},
+      user_dep = #{userDep,jdbcType=INTEGER},
+      user_workday = #{userWorkday,jdbcType=TIMESTAMP},
+      user_duty = #{userDuty,jdbcType=NVARCHAR},
+      user_card = #{userCard,jdbcType=NVARCHAR},
+      user_password = #{userPassword,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=SMALLINT},
+      user_sex = #{userSex,jdbcType=NVARCHAR},
+      user_nation = #{userNation,jdbcType=NVARCHAR},
+      user_birthday = #{userBirthday,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=NVARCHAR},
+      user_telephone = #{userTelephone,jdbcType=NVARCHAR},
+      user_address = #{userAddress,jdbcType=NVARCHAR},
+      user_email = #{userEmail,jdbcType=NVARCHAR}
+    where user_serial = #{userSerial,jdbcType=BIGINT}
+  </update>
+  <update id="updateDepName" parameterType="com.weds.api.entity.DtUserEntity">
+    update dt_user
+    set user_depname = b.dep_name,dep_no = b.dep_no
+    from dt_user a left join dt_dep b on a.user_dep = b.dep_serial
+    where user_serial = #{userSerial,jdbcType=BIGINT}
+  </update>
+  <select id="select" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from dt_user
+  </select>
+
+  <select id="selectByUserNo" parameterType="String" resultMap="BaseResultMap">
+    select
+      <include refid="Base_Column_List" />
+    from dt_user
+    where user_no =  #{userNo,jdbcType=NVARCHAR}
+  </select>
+
+</mapper>

@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weds.api.mapper.MODULEMapper">
+  <resultMap id="BaseResultMap" type="com.weds.api.entity.MODULEEntity">
+    <id column="Module_id" jdbcType="CHAR" property="moduleId" />
+    <result column="Module_lx" jdbcType="INTEGER" property="moduleLx" />
+    <result column="Module_lname" jdbcType="NVARCHAR" property="moduleLname" />
+    <result column="module_state" jdbcType="INTEGER" property="moduleState" />
+    <result column="module_ini" jdbcType="VARCHAR" property="moduleIni" />
+    <result column="Module_user" jdbcType="BIGINT" property="moduleUser" />
+    <result column="Module_dep" jdbcType="INTEGER" property="moduleDep" />
+    <result column="Module_place" jdbcType="INTEGER" property="modulePlace" />
+    <result column="Module_card" jdbcType="INTEGER" property="moduleCard" />
+    <result column="Module_psam" jdbcType="INTEGER" property="modulePsam" />
+    <result column="Module_dbname" jdbcType="NVARCHAR" property="moduleDbname" />
+    <result column="Module_img" jdbcType="NVARCHAR" property="moduleImg" />
+    <result column="Module_link" jdbcType="INTEGER" property="moduleLink" />
+    <result column="Module_size" jdbcType="INTEGER" property="moduleSize" />
+    <result column="Module_set" jdbcType="INTEGER" property="moduleSet" />
+    <result column="Module_ac" jdbcType="CHAR" property="moduleAc" />
+    <result column="Module_path" jdbcType="NVARCHAR" property="modulePath" />
+    <result column="Module_order" jdbcType="INTEGER" property="moduleOrder" />
+    <result column="Module_sj" jdbcType="TIMESTAMP" property="moduleSj" />
+    <result column="Gly_no" jdbcType="NVARCHAR" property="glyNo" />
+    <result column="isReal" jdbcType="INTEGER" property="isreal" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Module_id, Module_lx, Module_lname, module_state, module_ini, Module_user, Module_dep, 
+    Module_place, Module_card, Module_psam, Module_dbname, Module_img, Module_link, Module_size, 
+    Module_set, Module_ac, Module_path, Module_order, Module_sj, Gly_no, isReal
+  </sql>
+  <select id="selectMeetBhByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select Module_user from WT_MODULE where Module_id=#{moduleId}
+  </select>
+  <update id="updateMeetBhByPrimaryKey" parameterType="java.lang.String">
+    update WT_MODULE set Module_user=Module_user+1 where Module_id=#{moduleId}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from WT_MODULE
+    where Module_id = #{moduleId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from WT_MODULE
+    where Module_id = #{moduleId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.weds.api.entity.MODULEEntity">
+    insert into WT_MODULE (Module_id, Module_lx, Module_lname, 
+      module_state, module_ini, Module_user, 
+      Module_dep, Module_place, Module_card, 
+      Module_psam, Module_dbname, Module_img, 
+      Module_link, Module_size, Module_set, 
+      Module_ac, Module_path, Module_order, 
+      Module_sj, Gly_no, isReal
+      )
+    values (#{moduleId,jdbcType=CHAR}, #{moduleLx,jdbcType=INTEGER}, #{moduleLname,jdbcType=NVARCHAR}, 
+      #{moduleState,jdbcType=INTEGER}, #{moduleIni,jdbcType=VARCHAR}, #{moduleUser,jdbcType=BIGINT}, 
+      #{moduleDep,jdbcType=INTEGER}, #{modulePlace,jdbcType=INTEGER}, #{moduleCard,jdbcType=INTEGER}, 
+      #{modulePsam,jdbcType=INTEGER}, #{moduleDbname,jdbcType=NVARCHAR}, #{moduleImg,jdbcType=NVARCHAR}, 
+      #{moduleLink,jdbcType=INTEGER}, #{moduleSize,jdbcType=INTEGER}, #{moduleSet,jdbcType=INTEGER}, 
+      #{moduleAc,jdbcType=CHAR}, #{modulePath,jdbcType=NVARCHAR}, #{moduleOrder,jdbcType=INTEGER}, 
+      #{moduleSj,jdbcType=TIMESTAMP}, #{glyNo,jdbcType=NVARCHAR}, #{isreal,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.weds.api.entity.MODULEEntity">
+    insert into WT_MODULE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="moduleId != null">
+        Module_id,
+      </if>
+      <if test="moduleLx != null">
+        Module_lx,
+      </if>
+      <if test="moduleLname != null">
+        Module_lname,
+      </if>
+      <if test="moduleState != null">
+        module_state,
+      </if>
+      <if test="moduleIni != null">
+        module_ini,
+      </if>
+      <if test="moduleUser != null">
+        Module_user,
+      </if>
+      <if test="moduleDep != null">
+        Module_dep,
+      </if>
+      <if test="modulePlace != null">
+        Module_place,
+      </if>
+      <if test="moduleCard != null">
+        Module_card,
+      </if>
+      <if test="modulePsam != null">
+        Module_psam,
+      </if>
+      <if test="moduleDbname != null">
+        Module_dbname,
+      </if>
+      <if test="moduleImg != null">
+        Module_img,
+      </if>
+      <if test="moduleLink != null">
+        Module_link,
+      </if>
+      <if test="moduleSize != null">
+        Module_size,
+      </if>
+      <if test="moduleSet != null">
+        Module_set,
+      </if>
+      <if test="moduleAc != null">
+        Module_ac,
+      </if>
+      <if test="modulePath != null">
+        Module_path,
+      </if>
+      <if test="moduleOrder != null">
+        Module_order,
+      </if>
+      <if test="moduleSj != null">
+        Module_sj,
+      </if>
+      <if test="glyNo != null">
+        Gly_no,
+      </if>
+      <if test="isreal != null">
+        isReal,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=CHAR},
+      </if>
+      <if test="moduleLx != null">
+        #{moduleLx,jdbcType=INTEGER},
+      </if>
+      <if test="moduleLname != null">
+        #{moduleLname,jdbcType=NVARCHAR},
+      </if>
+      <if test="moduleState != null">
+        #{moduleState,jdbcType=INTEGER},
+      </if>
+      <if test="moduleIni != null">
+        #{moduleIni,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleUser != null">
+        #{moduleUser,jdbcType=BIGINT},
+      </if>
+      <if test="moduleDep != null">
+        #{moduleDep,jdbcType=INTEGER},
+      </if>
+      <if test="modulePlace != null">
+        #{modulePlace,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCard != null">
+        #{moduleCard,jdbcType=INTEGER},
+      </if>
+      <if test="modulePsam != null">
+        #{modulePsam,jdbcType=INTEGER},
+      </if>
+      <if test="moduleDbname != null">
+        #{moduleDbname,jdbcType=NVARCHAR},
+      </if>
+      <if test="moduleImg != null">
+        #{moduleImg,jdbcType=NVARCHAR},
+      </if>
+      <if test="moduleLink != null">
+        #{moduleLink,jdbcType=INTEGER},
+      </if>
+      <if test="moduleSize != null">
+        #{moduleSize,jdbcType=INTEGER},
+      </if>
+      <if test="moduleSet != null">
+        #{moduleSet,jdbcType=INTEGER},
+      </if>
+      <if test="moduleAc != null">
+        #{moduleAc,jdbcType=CHAR},
+      </if>
+      <if test="modulePath != null">
+        #{modulePath,jdbcType=NVARCHAR},
+      </if>
+      <if test="moduleOrder != null">
+        #{moduleOrder,jdbcType=INTEGER},
+      </if>
+      <if test="moduleSj != null">
+        #{moduleSj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="glyNo != null">
+        #{glyNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="isreal != null">
+        #{isreal,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.weds.api.entity.MODULEEntity">
+    update WT_MODULE
+    <set>
+      <if test="moduleLx != null">
+        Module_lx = #{moduleLx,jdbcType=INTEGER},
+      </if>
+      <if test="moduleLname != null">
+        Module_lname = #{moduleLname,jdbcType=NVARCHAR},
+      </if>
+      <if test="moduleState != null">
+        module_state = #{moduleState,jdbcType=INTEGER},
+      </if>
+      <if test="moduleIni != null">
+        module_ini = #{moduleIni,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleUser != null">
+        Module_user = #{moduleUser,jdbcType=BIGINT},
+      </if>
+      <if test="moduleDep != null">
+        Module_dep = #{moduleDep,jdbcType=INTEGER},
+      </if>
+      <if test="modulePlace != null">
+        Module_place = #{modulePlace,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCard != null">
+        Module_card = #{moduleCard,jdbcType=INTEGER},
+      </if>
+      <if test="modulePsam != null">
+        Module_psam = #{modulePsam,jdbcType=INTEGER},
+      </if>
+      <if test="moduleDbname != null">
+        Module_dbname = #{moduleDbname,jdbcType=NVARCHAR},
+      </if>
+      <if test="moduleImg != null">
+        Module_img = #{moduleImg,jdbcType=NVARCHAR},
+      </if>
+      <if test="moduleLink != null">
+        Module_link = #{moduleLink,jdbcType=INTEGER},
+      </if>
+      <if test="moduleSize != null">
+        Module_size = #{moduleSize,jdbcType=INTEGER},
+      </if>
+      <if test="moduleSet != null">
+        Module_set = #{moduleSet,jdbcType=INTEGER},
+      </if>
+      <if test="moduleAc != null">
+        Module_ac = #{moduleAc,jdbcType=CHAR},
+      </if>
+      <if test="modulePath != null">
+        Module_path = #{modulePath,jdbcType=NVARCHAR},
+      </if>
+      <if test="moduleOrder != null">
+        Module_order = #{moduleOrder,jdbcType=INTEGER},
+      </if>
+      <if test="moduleSj != null">
+        Module_sj = #{moduleSj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="glyNo != null">
+        Gly_no = #{glyNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="isreal != null">
+        isReal = #{isreal,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Module_id = #{moduleId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.weds.api.entity.MODULEEntity">
+    update WT_MODULE
+    set Module_lx = #{moduleLx,jdbcType=INTEGER},
+      Module_lname = #{moduleLname,jdbcType=NVARCHAR},
+      module_state = #{moduleState,jdbcType=INTEGER},
+      module_ini = #{moduleIni,jdbcType=VARCHAR},
+      Module_user = #{moduleUser,jdbcType=BIGINT},
+      Module_dep = #{moduleDep,jdbcType=INTEGER},
+      Module_place = #{modulePlace,jdbcType=INTEGER},
+      Module_card = #{moduleCard,jdbcType=INTEGER},
+      Module_psam = #{modulePsam,jdbcType=INTEGER},
+      Module_dbname = #{moduleDbname,jdbcType=NVARCHAR},
+      Module_img = #{moduleImg,jdbcType=NVARCHAR},
+      Module_link = #{moduleLink,jdbcType=INTEGER},
+      Module_size = #{moduleSize,jdbcType=INTEGER},
+      Module_set = #{moduleSet,jdbcType=INTEGER},
+      Module_ac = #{moduleAc,jdbcType=CHAR},
+      Module_path = #{modulePath,jdbcType=NVARCHAR},
+      Module_order = #{moduleOrder,jdbcType=INTEGER},
+      Module_sj = #{moduleSj,jdbcType=TIMESTAMP},
+      Gly_no = #{glyNo,jdbcType=NVARCHAR},
+      isReal = #{isreal,jdbcType=INTEGER}
+    where Module_id = #{moduleId,jdbcType=CHAR}
+  </update>
+  <select id="selectListByEntity" parameterType="com.weds.api.entity.MODULEEntity" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from WT_MODULE
+    <where>
+      <if test="moduleId != null">
+        and Module_id = #{moduleId,jdbcType=CHAR}
+      </if>
+      <if test="moduleLx != null">
+        and Module_lx = #{moduleLx,jdbcType=INTEGER}
+      </if>
+      <if test="moduleLname != null">
+        and Module_lname = #{moduleLname,jdbcType=NVARCHAR}
+      </if>
+      <if test="moduleState != null">
+        and module_state = #{moduleState,jdbcType=INTEGER}
+      </if>
+      <if test="moduleIni != null">
+        <bind name="moduleIniLike" value="'%'+moduleIni+'%'" />
+        and module_ini like #{moduleIniLike}
+        <!--and module_ini = #{moduleIni,jdbcType=VARCHAR}-->
+      </if>
+      <if test="moduleUser != null">
+        and Module_user = #{moduleUser,jdbcType=BIGINT}
+      </if>
+      <if test="moduleDep != null">
+        and Module_dep = #{moduleDep,jdbcType=INTEGER}
+      </if>
+      <if test="modulePlace != null">
+        and Module_place = #{modulePlace,jdbcType=INTEGER}
+      </if>
+      <if test="moduleCard != null">
+        and Module_card = #{moduleCard,jdbcType=INTEGER}
+      </if>
+      <if test="modulePsam != null">
+        and Module_psam = #{modulePsam,jdbcType=INTEGER}
+      </if>
+      <if test="moduleDbname != null">
+        and Module_dbname = #{moduleDbname,jdbcType=NVARCHAR}
+      </if>
+      <if test="moduleImg != null">
+        and Module_img = #{moduleImg,jdbcType=NVARCHAR}
+      </if>
+      <if test="moduleLink != null">
+        and Module_link = #{moduleLink,jdbcType=INTEGER}
+      </if>
+      <if test="moduleSize != null">
+        and Module_size = #{moduleSize,jdbcType=INTEGER}
+      </if>
+      <if test="moduleSet != null">
+        and Module_set = #{moduleSet,jdbcType=INTEGER}
+      </if>
+      <if test="moduleAc != null">
+        and Module_ac = #{moduleAc,jdbcType=CHAR}
+      </if>
+      <if test="modulePath != null">
+        and Module_path = #{modulePath,jdbcType=NVARCHAR}
+      </if>
+      <if test="moduleOrder != null">
+        and Module_order = #{moduleOrder,jdbcType=INTEGER}
+      </if>
+      <if test="moduleSj != null">
+        and Module_sj = #{moduleSj,jdbcType=TIMESTAMP}
+      </if>
+      <if test="glyNo != null">
+        and Gly_no = #{glyNo,jdbcType=NVARCHAR}
+      </if>
+      <if test="isreal != null">
+        and isReal = #{isreal,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+</mapper>

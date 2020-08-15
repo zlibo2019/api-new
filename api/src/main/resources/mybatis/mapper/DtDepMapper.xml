@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weds.api.mapper.DtDepMapper">
+    <resultMap id="BaseResultMap" type="com.weds.api.entity.DtDepEntity">
+        <id column="dep_serial" jdbcType="BIGINT" property="depSerial"/>
+        <result column="dep_parent" jdbcType="INTEGER" property="depParent"/>
+        <result column="dep_order" jdbcType="INTEGER" property="depOrder"/>
+        <result column="dep_name" jdbcType="NVARCHAR" property="depName"/>
+        <result column="dep_no" jdbcType="VARCHAR" property="depNo"/>
+        <result column="dep_rule" jdbcType="NVARCHAR" property="depRule"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    dep_serial, dep_parent, dep_order, dep_name, dep_no, dep_rule
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dt_dep
+        where dep_serial = #{depSerial,jdbcType=BIGINT}
+    </select>
+    <select id="select" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dt_dep
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from dt_dep
+    where dep_serial = #{depSerial,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.weds.api.entity.DtDepEntity" statementType="CALLABLE">
+        {call insert_dep(#{depParent,mode=IN,jdbcType=INTEGER},#{depName,mode=IN,jdbcType=NVARCHAR})}
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.weds.api.entity.DtDepEntity">
+    update dt_dep
+    set dep_parent = #{depParent,jdbcType=INTEGER},
+      dep_order = #{depOrder,jdbcType=INTEGER},
+      dep_name = #{depName,jdbcType=NVARCHAR},
+      dep_no = #{depNo,jdbcType=VARCHAR},
+      dep_rule = #{depRule,jdbcType=NVARCHAR},
+      dep_regserial = #{depRegserial,jdbcType=NVARCHAR},
+      jz_dt_abbreviation = #{jzDtAbbreviation,jdbcType=VARCHAR},
+      dep_teachserial = #{depTeachserial,jdbcType=INTEGER},
+      dep_lx = #{depLx,jdbcType=INTEGER},
+      dep_domain = #{depDomain,jdbcType=VARCHAR},
+      id = #{id,jdbcType=INTEGER},
+      dep_no_add = #{depNoAdd,jdbcType=VARCHAR},
+      dep_no_parent = #{depNoParent,jdbcType=VARCHAR}
+    where dep_serial = #{depSerial,jdbcType=BIGINT}
+  </update>
+
+</mapper>

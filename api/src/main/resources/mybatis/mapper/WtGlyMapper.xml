@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weds.api.mapper.WtGlyMapper">
+    <resultMap id="BaseResultMap" type="com.weds.api.entity.WtGlyEntity">
+        <id column="Gly_no" jdbcType="NVARCHAR" property="glyNo"/>
+        <result column="Gly_lname" jdbcType="NVARCHAR" property="glyLname"/>
+        <result column="Gly_pass" jdbcType="VARCHAR" property="glyPass"/>
+        <result column="Gly_lx" jdbcType="INTEGER" property="glyLx"/>
+        <result column="Gly_group" jdbcType="CHAR" property="glyGroup"/>
+        <result column="Gly_phone" jdbcType="VARCHAR" property="glyPhone"/>
+        <result column="Gly_email" jdbcType="VARCHAR" property="glyEmail"/>
+        <result column="Gly_serial" jdbcType="INTEGER" property="glySerial"/>
+        <result column="Gly_parent" jdbcType="NVARCHAR" property="glyParent"/>
+        <result column="Gly_sj" jdbcType="TIMESTAMP" property="glySj"/>
+        <result column="Gly_bz" jdbcType="NVARCHAR" property="glyBz"/>
+        <result column="gly_img" jdbcType="INTEGER" property="glyImg"/>
+        <result column="gly_regserial" jdbcType="NVARCHAR" property="glyRegserial"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    Gly_no, Gly_lname, Gly_pass, Gly_lx, Gly_group, Gly_phone, Gly_email, Gly_serial, 
+    Gly_parent, Gly_sj, Gly_bz, gly_img, gly_regserial
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from WT_GLY
+        where Gly_no = #{glyNo,jdbcType=NVARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from WT_GLY
+    where Gly_no = #{glyNo,jdbcType=NVARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.weds.api.entity.WtGlyEntity">
+    insert into WT_GLY (Gly_no, Gly_lname, Gly_pass, 
+      Gly_lx, Gly_group, Gly_phone, 
+      Gly_email, Gly_serial, Gly_parent, 
+      Gly_sj, Gly_bz, gly_img, 
+      gly_regserial)
+    values (#{glyNo,jdbcType=NVARCHAR}, #{glyLname,jdbcType=NVARCHAR}, #{glyPass,jdbcType=VARCHAR}, 
+      #{glyLx,jdbcType=INTEGER}, #{glyGroup,jdbcType=CHAR}, #{glyPhone,jdbcType=VARCHAR}, 
+      #{glyEmail,jdbcType=VARCHAR}, #{glySerial,jdbcType=INTEGER}, #{glyParent,jdbcType=NVARCHAR}, 
+      #{glySj,jdbcType=TIMESTAMP}, #{glyBz,jdbcType=NVARCHAR}, #{glyImg,jdbcType=INTEGER}, 
+      #{glyRegserial,jdbcType=NVARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.weds.api.entity.WtGlyEntity">
+        insert into WT_GLY
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="glyNo != null">
+                Gly_no,
+            </if>
+            <if test="glyLname != null">
+                Gly_lname,
+            </if>
+            <if test="glyPass != null">
+                Gly_pass,
+            </if>
+            <if test="glyLx != null">
+                Gly_lx,
+            </if>
+            <if test="glyGroup != null">
+                Gly_group,
+            </if>
+            <if test="glyPhone != null">
+                Gly_phone,
+            </if>
+            <if test="glyEmail != null">
+                Gly_email,
+            </if>
+            <if test="glySerial != null">
+                Gly_serial,
+            </if>
+            <if test="glyParent != null">
+                Gly_parent,
+            </if>
+            <if test="glySj != null">
+                Gly_sj,
+            </if>
+            <if test="glyBz != null">
+                Gly_bz,
+            </if>
+            <if test="glyImg != null">
+                gly_img,
+            </if>
+            <if test="glyRegserial != null">
+                gly_regserial,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="glyNo != null">
+                #{glyNo,jdbcType=NVARCHAR},
+            </if>
+            <if test="glyLname != null">
+                #{glyLname,jdbcType=NVARCHAR},
+            </if>
+            <if test="glyPass != null">
+                #{glyPass,jdbcType=VARCHAR},
+            </if>
+            <if test="glyLx != null">
+                #{glyLx,jdbcType=INTEGER},
+            </if>
+            <if test="glyGroup != null">
+                #{glyGroup,jdbcType=CHAR},
+            </if>
+            <if test="glyPhone != null">
+                #{glyPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="glyEmail != null">
+                #{glyEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="glySerial != null">
+                #{glySerial,jdbcType=INTEGER},
+            </if>
+            <if test="glyParent != null">
+                #{glyParent,jdbcType=NVARCHAR},
+            </if>
+            <if test="glySj != null">
+                #{glySj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="glyBz != null">
+                #{glyBz,jdbcType=NVARCHAR},
+            </if>
+            <if test="glyImg != null">
+                #{glyImg,jdbcType=INTEGER},
+            </if>
+            <if test="glyRegserial != null">
+                #{glyRegserial,jdbcType=NVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.weds.api.entity.WtGlyEntity">
+        update WT_GLY
+        <set>
+            <if test="glyLname != null">
+                Gly_lname = #{glyLname,jdbcType=NVARCHAR},
+            </if>
+            <if test="glyPass != null">
+                Gly_pass = #{glyPass,jdbcType=VARCHAR},
+            </if>
+            <if test="glyLx != null">
+                Gly_lx = #{glyLx,jdbcType=INTEGER},
+            </if>
+            <if test="glyGroup != null">
+                Gly_group = #{glyGroup,jdbcType=CHAR},
+            </if>
+            <if test="glyPhone != null">
+                Gly_phone = #{glyPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="glyEmail != null">
+                Gly_email = #{glyEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="glySerial != null">
+                Gly_serial = #{glySerial,jdbcType=INTEGER},
+            </if>
+            <if test="glyParent != null">
+                Gly_parent = #{glyParent,jdbcType=NVARCHAR},
+            </if>
+            <if test="glySj != null">
+                Gly_sj = #{glySj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="glyBz != null">
+                Gly_bz = #{glyBz,jdbcType=NVARCHAR},
+            </if>
+            <if test="glyImg != null">
+                gly_img = #{glyImg,jdbcType=INTEGER},
+            </if>
+            <if test="glyRegserial != null">
+                gly_regserial = #{glyRegserial,jdbcType=NVARCHAR},
+            </if>
+        </set>
+        where Gly_no = #{glyNo,jdbcType=NVARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.weds.api.entity.WtGlyEntity">
+    update WT_GLY
+    set Gly_lname = #{glyLname,jdbcType=NVARCHAR},
+      Gly_pass = #{glyPass,jdbcType=VARCHAR},
+      Gly_lx = #{glyLx,jdbcType=INTEGER},
+      Gly_group = #{glyGroup,jdbcType=CHAR},
+      Gly_phone = #{glyPhone,jdbcType=VARCHAR},
+      Gly_email = #{glyEmail,jdbcType=VARCHAR},
+      Gly_serial = #{glySerial,jdbcType=INTEGER},
+      Gly_parent = #{glyParent,jdbcType=NVARCHAR},
+      Gly_sj = #{glySj,jdbcType=TIMESTAMP},
+      Gly_bz = #{glyBz,jdbcType=NVARCHAR},
+      gly_img = #{glyImg,jdbcType=INTEGER},
+      gly_regserial = #{glyRegserial,jdbcType=NVARCHAR}
+    where Gly_no = #{glyNo,jdbcType=NVARCHAR}
+  </update>
+    <select id="selectListByEntity" parameterType="com.weds.api.entity.WtGlyEntity" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from WT_GLY
+        <where>
+            <if test="glyNo != null">
+                <bind name="glyNoLike" value="'%'+glyNo+'%'"/>
+                and Gly_no like #{glyNoLike}
+                <!--and Gly_no = #{glyNo,jdbcType=NVARCHAR}-->
+            </if>
+            <if test="glyLname != null">
+                <bind name="glyLnameLike" value="'%'+glyLname+'%'"/>
+                and Gly_lname like #{glyLnameLike}
+                <!--and Gly_lname = #{glyLname,jdbcType=NVARCHAR}-->
+            </if>
+            <if test="glyPass != null">
+                <bind name="glyPassLike" value="'%'+glyPass+'%'"/>
+                and Gly_pass like #{glyPassLike}
+                <!--and Gly_pass = #{glyPass,jdbcType=VARCHAR}-->
+            </if>
+            <if test="glyLx != null">
+                and Gly_lx = #{glyLx,jdbcType=INTEGER}
+            </if>
+            <if test="glyGroup != null">
+                <bind name="glyGroupLike" value="'%'+glyGroup+'%'"/>
+                and Gly_group like #{glyGroupLike}
+                <!--and Gly_group = #{glyGroup,jdbcType=CHAR}-->
+            </if>
+            <if test="glyPhone != null">
+                <bind name="glyPhoneLike" value="'%'+glyPhone+'%'"/>
+                and Gly_phone like #{glyPhoneLike}
+                <!--and Gly_phone = #{glyPhone,jdbcType=VARCHAR}-->
+            </if>
+            <if test="glyEmail != null">
+                <bind name="glyEmailLike" value="'%'+glyEmail+'%'"/>
+                and Gly_email like #{glyEmailLike}
+                <!--and Gly_email = #{glyEmail,jdbcType=VARCHAR}-->
+            </if>
+            <if test="glySerial != null">
+                and Gly_serial = #{glySerial,jdbcType=INTEGER}
+            </if>
+            <if test="glyParent != null">
+                <bind name="glyParentLike" value="'%'+glyParent+'%'"/>
+                and Gly_parent like #{glyParentLike}
+                <!--and Gly_parent = #{glyParent,jdbcType=NVARCHAR}-->
+            </if>
+            <if test="glySj != null">
+                and Gly_sj = #{glySj,jdbcType=TIMESTAMP}
+            </if>
+            <if test="glyBz != null">
+                <bind name="glyBzLike" value="'%'+glyBz+'%'"/>
+                and Gly_bz like #{glyBzLike}
+                <!--and Gly_bz = #{glyBz,jdbcType=NVARCHAR}-->
+            </if>
+            <if test="glyImg != null">
+                and gly_img = #{glyImg,jdbcType=INTEGER}
+            </if>
+            <if test="glyRegserial != null">
+                <bind name="glyRegserialLike" value="'%'+glyRegserial+'%'"/>
+                and gly_regserial like #{glyRegserialLike}
+                <!--and gly_regserial = #{glyRegserial,jdbcType=NVARCHAR}-->
+            </if>
+            <if test="keys != null">
+                <bind name="keysLike" value="'%'+keys+'%'"/>
+                and (Gly_no like #{keysLike} or
+                Gly_lname like #{keysLike} or
+                Gly_pass like #{keysLike} or
+                Gly_lx = #{keys} or
+                Gly_group like #{keysLike} or
+                Gly_phone like #{keysLike} or
+                Gly_email like #{keysLike} or
+                Gly_serial = #{keys} or
+                Gly_parent like #{keysLike} or
+                Gly_sj = #{keys} or
+                Gly_bz like #{keysLike} or
+                gly_img = #{keys} or
+                gly_regserial like #{keysLike})
+            </if>
+        </where>
+    </select>
+    <update id="updatePwd" parameterType="com.weds.api.entity.WtGlyEntity">
+        update wt_gly
+        set gly_pass = #{glyPass}
+        where gly_no = #{glyNo}
+    </update>
+</mapper>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weds.api.mapper.AttendanceMapper">
+    <resultMap id="BaseResultMap" type="com.weds.api.entity.AttendanceFlowEntity">
+        <id column="bh" jdbcType="BIGINT" property="bh" />
+        <id column="user_serial" jdbcType="BIGINT" property="userSerial" />
+        <result column="user_no" jdbcType="NVARCHAR" property="userNo" />
+        <result column="user_lname" jdbcType="NVARCHAR" property="userLname" />
+        <result column="user_depname" jdbcType="NVARCHAR" property="userDepname" />
+        <result column="user_dep" jdbcType="INTEGER" property="userDep" />
+        <result column="user_card" jdbcType="NVARCHAR" property="userCard" />
+        <result column="dev_serial" jdbcType="NVARCHAR" property="devSerial" />
+        <result column="dev_sb_id" jdbcType="INTEGER" property="devSbId" />
+        <result column="mc" jdbcType="NVARCHAR" property="mc" />
+        <result column="sj" jdbcType="TIMESTAMP" property="sj" />
+        <result column="fx" jdbcType="INTEGER" property="fx" />
+        <result column="zp_path" jdbcType="NVARCHAR" property="zpPath" />
+    </resultMap>
+    <select id="select" parameterType="com.weds.api.entity.AttendanceFlowEntity"  resultMap="BaseResultMap">
+        select a.bh,b.user_card,b.user_id,a.user_serial,b.user_no,b.user_lname,b.user_dep,b.user_depname,a.sj,a.fx,a.dev_serial,c.dev_sb_id,c.mc,
+        '../'+dev_serial+'/'+convert(varchar(10),a.sj,23)+'/jk'+cast(a.jlzp_serial as varchar(20))+'.jpg' as zp_path
+        from kt_jl a
+        left join dt_user b on a.user_serial = b.user_serial
+        left join st_device c on a.dev_serial = c.bh
+        <where>
+            a.sj BETWEEN #{kssj} AND #{jssj}
+            <if test="userSerial != null">
+                and a.user_serial = #{userSerial,jdbcType=INTEGER}
+            </if>
+            <if test="userCard != null">
+                <bind name="userCardLike" value="'%'+userCard+'%'"/>
+                and b.user_card like #{userCardLike}
+            </if>
+            <if test="userId != null">
+                <bind name="userIdLike" value="'%'+userId+'%'"/>
+                and b.user_id like #{userIdLike}
+            </if>
+            <if test="userNo != null">
+                <bind name="userNoLike" value="'%'+userNo+'%'"/>
+                and b.user_no like #{userNoLike}
+            </if>
+            <if test="mc != null">
+                <bind name="mcLike" value="'%'+mc+'%'"/>
+                and c.mc like #{mcLike}
+            </if>
+            <if test="userLname != null">
+                <bind name="userLnameLike" value="'%'+userLname+'%'"/>
+                and b.user_lname like #{userLnameLike}
+            </if>
+
+            <if test="fx != null">
+                and a.fx = #{fx,jdbcType=INTEGER}
+            </if>
+            <if test="devSerial != null">
+                and dev_serial = #{devSerial,jdbcType=NVARCHAR}
+            </if>
+        </where>
+    </select>
+
+</mapper>

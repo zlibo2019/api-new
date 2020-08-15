@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weds.api.mapper.DtPhotoMapper">
+    <resultMap id="BaseResultMap" type="com.weds.api.entity.DtPhotoEntity">
+        <id column="xh" jdbcType="INTEGER" property="xh"/>
+        <id column="user_serial" jdbcType="BIGINT" property="userSerial"/>
+        <result column="lx" jdbcType="INTEGER" property="lx"/>
+        <result column="gly_no" jdbcType="NVARCHAR" property="glyNo"/>
+        <result column="photo_name" jdbcType="NVARCHAR" property="photoName"/>
+        <result column="photo_type" jdbcType="INTEGER" property="photoType"/>
+        <result column="photo_path" jdbcType="NVARCHAR" property="photoPath"/>
+        <result column="sj" jdbcType="TIMESTAMP" property="sj"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        xh, user_serial, lx, gly_no, photo_name, photo_type, photo_path, sj
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dt_photo
+        where user_serial = #{userSerial,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="map">
+        delete from dt_photo
+        where user_serial = #{userSerial,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.weds.api.entity.DtPhotoEntity">
+        <selectKey keyProperty="xh" order="AFTER" resultType="java.lang.Integer">
+            SELECT SCOPE_IDENTITY()
+        </selectKey>
+        insert into dt_photo (user_serial, lx, gly_no,
+        photo_name, photo_type, photo_path,
+        sj)
+        values (#{userSerial,jdbcType=BIGINT}, #{lx,jdbcType=INTEGER}, #{glyNo,jdbcType=NVARCHAR},
+        #{photoName,jdbcType=NVARCHAR}, #{photoType,jdbcType=INTEGER}, #{photoPath,jdbcType=NVARCHAR},
+        #{sj,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.weds.api.entity.DtPhotoEntity">
+        <selectKey keyProperty="xh" order="AFTER" resultType="java.lang.Integer">
+            SELECT SCOPE_IDENTITY()
+        </selectKey>
+        insert into dt_photo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userSerial != null">
+                user_serial,
+            </if>
+            <if test="lx != null">
+                lx,
+            </if>
+            <if test="glyNo != null">
+                gly_no,
+            </if>
+            <if test="photoName != null">
+                photo_name,
+            </if>
+            <if test="photoType != null">
+                photo_type,
+            </if>
+            <if test="photoPath != null">
+                photo_path,
+            </if>
+            <if test="sj != null">
+                sj,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userSerial != null">
+                #{userSerial,jdbcType=BIGINT},
+            </if>
+            <if test="lx != null">
+                #{lx,jdbcType=INTEGER},
+            </if>
+            <if test="glyNo != null">
+                #{glyNo,jdbcType=NVARCHAR},
+            </if>
+            <if test="photoName != null">
+                #{photoName,jdbcType=NVARCHAR},
+            </if>
+            <if test="photoType != null">
+                #{photoType,jdbcType=INTEGER},
+            </if>
+            <if test="photoPath != null">
+                #{photoPath,jdbcType=NVARCHAR},
+            </if>
+            <if test="sj != null">
+                #{sj,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.weds.api.entity.DtPhotoEntity">
+        update dt_photo
+        <set>
+            <if test="lx != null">
+                lx = #{lx,jdbcType=INTEGER},
+            </if>
+            <if test="glyNo != null">
+                gly_no = #{glyNo,jdbcType=NVARCHAR},
+            </if>
+            <if test="photoName != null">
+                photo_name = #{photoName,jdbcType=NVARCHAR},
+            </if>
+            <if test="photoType != null">
+                photo_type = #{photoType,jdbcType=INTEGER},
+            </if>
+            <if test="photoPath != null">
+                photo_path = #{photoPath,jdbcType=NVARCHAR},
+            </if>
+            <if test="sj != null">
+                sj = #{sj,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where user_serial = #{userSerial,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.weds.api.entity.DtPhotoEntity">
+        update dt_photo
+        set lx         = #{lx,jdbcType=INTEGER},
+            gly_no     = #{glyNo,jdbcType=NVARCHAR},
+            photo_name = #{photoName,jdbcType=NVARCHAR},
+            photo_type = #{photoType,jdbcType=INTEGER},
+            photo_path = #{photoPath,jdbcType=NVARCHAR},
+            sj         = #{sj,jdbcType=TIMESTAMP}
+        where user_serial = #{userSerial,jdbcType=BIGINT}
+    </update>
+</mapper>
